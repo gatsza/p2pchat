@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>P2P Chat</title>
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/app.js"></script>
+</head>
+<body>
+<h1>P2P Chat</h1>
+<div id="user">
+
+</div>
+
+<div id="chat">
+  <table id="messages">
+    <thead>
+      <td>User</td>
+      <td>Messages</td>
+    </thead>
+    <tbody>
+      <tr th:object="${message}" th:each="message: ${messages}" >
+        <td th:text="*{getUsername()}" />
+        <td th:text="*{getText()}"/>
+        <td th:text="*{getTimestamp()}" />
+      </tr>
+
+    </tbody>
+  </table>
+  <form th:action="@{message (username=${username})}" method="post">
+    <label for="new-message">New Message</label>
+    <textarea id="new-message" name="new-message" > </textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+</body>
+</html>
